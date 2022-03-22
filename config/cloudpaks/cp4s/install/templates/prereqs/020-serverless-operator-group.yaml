@@ -4,8 +4,8 @@ kind: OperatorGroup
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "20"
-  name: knative-operator-group
+    olm.providedAPIs: >-
+      KnativeEventing.v1alpha1.operator.knative.dev,KnativeKafka.v1alpha1.operator.serverless.openshift.io,KnativeServing.v1alpha1.operator.knative.dev
+  name: openshift-serverless-operator-group
   namespace: openshift-serverless
-spec:
-  targetNamespaces:
-    - ""
+spec: {}
