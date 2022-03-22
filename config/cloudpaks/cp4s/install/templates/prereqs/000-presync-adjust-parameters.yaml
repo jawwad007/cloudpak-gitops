@@ -62,7 +62,7 @@ spec:
               || result=1
 
               if [ ${result} -eq 0 ]; then
-                  for app_name in cp4as-app cp4s-all; do
+                  for app_name in cp4s-app cp4s-all; do
                       if [ -n "${storage_class_rwo}" ] && [ -n "${storage_class_rwx}" ]; then
                           echo "INFO: Patching storage for ${app_name}." \
                           && "${argo_cmd}" app set "${app_name}" \
@@ -75,7 +75,7 @@ spec:
                   done
               fi
 
-              for app_name in cp4as-app cp4s-all; do
+              for app_name in cp4s-app cp4s-all; do
                   echo "INFO: Application ${app_name} current parameters:"
                   "${argo_cmd}" app get "${app_name}" --show-params
               done

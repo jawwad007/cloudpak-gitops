@@ -10,7 +10,7 @@ spec:
   acceptLicense: true
   basicDeploymentConfiguration:
     adminUser: admin
-    domain: ""
+    domain: {{.Values.cluster_domain}}
     storageClass: {{.Values.storageclass.rwo}}
   extendedDeploymentConfiguration:
     airgapInstall: false
