@@ -488,6 +488,36 @@ spec:
         hs.status = "Progressing"
         hs.message = "Unknown"
         return hs
+    isc.ibm.com/CP4SThreatManagement:
+      health.lua: |
+        hs = {}
+
+        generation = obj.metadata.generation
+        if obj.status ~= nil then
+          observedGeneration = 0
+          if obj.status.observedGeneration ~= nil then
+            observedGeneration = tonumber(obj.status.observedGeneration)
+          end
+          if obj.status.conditions ~= nil then
+            hs.status = "Failed"
+            hs.message = ""
+            for i, condition in ipairs(obj.status.conditions) do
+              if condition.type == "Ready" and condition.status == "True" then
+                hs.status = "Healthy"
+                hs.message = condition.message
+                return hs
+              end
+              if condition.type == "Progressing" and condition.status == "True" then
+                hs.status = "Progressing"
+                hs.message = condition.message
+                return hs
+              end
+            end
+          end
+        end
+
+        hs.status = "Progressing"
+        return hs
   resourceExclusions: |
     - apiGroups:
       - tekton.dev
