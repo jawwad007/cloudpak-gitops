@@ -14,7 +14,7 @@ spec:
     storageClass: {{.Values.storageclass.rwo}}
   extendedDeploymentConfiguration:
     airgapInstall: false
-    backupStorageClass: ""
+    backupStorageClass: {{.Values.storageclass.rwo}}
     backupStorageSize: ""
     imagePullPolicy: IfNotPresent
     repository: cp.icr.io/cp/cp4s
